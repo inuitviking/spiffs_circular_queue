@@ -2,7 +2,7 @@
 
 ## Table of Contents
 
-GitHub is... A little weird; on the top right of this README.md when viewing on GitHub, there are three dots followed by a line each; click that to see a table of contents of sorts...
+GitHub is... A little weird; on the top right of this README.md when viewing on GitHub, there are three dots followed by a line each (to the right of the pencil); click that to see a table of contents of sorts...
 
 ## Introduction
 
