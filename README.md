@@ -1,5 +1,11 @@
 # SPIFFS Circular Queue
 
+## Table of Contents
+
+GitHub is... A little weird; on the top right of this README.md when viewing on GitHub, there are three dots followed by a line each; click that to see a table of contents of sorts...
+
+## Introduction
+
 SPIFFS Circular Queue or Circular FIFO Buffer is a data structure similar to a regular array queue in which the last data byte is connected to the first data byte. The queue metadata is maintained through circular_queue_t struct in RAM and are kept up to date in queue header in SPIFFS. Refer to circular_queue_t definition to see precisely what is stored in RAM. On the other hand, special effort was put to optimize non-volatile (nv) footprint. 
 
 Queue max size is settable for each queue instance through max_size member of circular_queue_t. Elems can be of variable or fixed size. If elems are of variable size (elem_size = 0), the elem size is stored at the beginning of each elem. If elem size if fixed (elem_size > 0), no elem size is stored.
@@ -37,6 +43,17 @@ Fixed metadata header is used to keep track of queue pointers and allows to full
 
 It was carefully unit-tested on ESP32 considering important general and corner cases. To see testes cases refer to unit_testing/test_main.ino. 
 
+## How to use with esp-idf
+
+In your `idf_component.yml`, it should look something like this, in your `dependencies` section:
+
+```yaml
+dependencies:
+  spiffs_circular_queue:
+    git: https://github.com/inuitviking/spiffs_circular_queue.git
+    path: components/spiffs_circular_queue
+    version: master
+```
 
 ## Interface
 
