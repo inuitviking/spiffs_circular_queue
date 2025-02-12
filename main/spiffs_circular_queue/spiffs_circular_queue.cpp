@@ -13,10 +13,6 @@
                                             sizeof(uint16_t)    + \
                                             sizeof(uint8_t))    ///< Data location file offset (fixed part)
 
-/// Private function to mount SPIFFS during initialization
-// static auto _mount_spiffs() -> uint8_t;
-/// Private function to unmount SPIFFS when you don't need it, i.e. before going in a sleep mode
-// static auto _unmount_spiffs() -> uint8_t;
 /// Private function that adds write medium-independent abstraction
 static auto _write_medium(const circular_queue_t* cq, const void* data, uint16_t data_size) -> uint8_t;
 /// Private function that adds read medium-independent abstraction. Data = NULL to read only the size of last elem
@@ -29,10 +25,6 @@ static inline auto _circular_queue_get_data_offset(const circular_queue_t* cq) -
 
 auto spiffs_circular_queue_init(circular_queue_t* cq) -> uint8_t {
     uint8_t ret = 1;
-
-    // if (ret && !esp_littlefs_mounted(nullptr)) {
-    //     ret = _mount_spiffs();
-    // }
 
     if (ret) {
         struct stat sb;
@@ -206,7 +198,6 @@ auto spiffs_circular_queue_free(circular_queue_t* cq, const uint8_t unmount_spif
 
     if (!remove(cq->fn)) {
         ret = 1;
-        // if (unmount_spiffs) ret = _unmount_spiffs();
         memset(cq, 0x0, sizeof(circular_queue_t));
     }
 
@@ -228,22 +219,6 @@ static auto _spiffs_circular_queue_persist(const circular_queue_t* cq) -> uint8_
 
     return (nwritten == SPIFFS_CIRCULAR_QUEUE_PERSIST_SIZE);
 }
-
-// static auto _mount_spiffs() -> uint8_t {
-//     constexpr esp_vfs_littlefs_conf_t conf = {
-//         .base_path = "/littlefs",
-//         .partition_label = "storage",
-//         .format_if_mount_failed = true,
-//         .dont_mount = false,
-//     };
-//     const esp_err_t ret = esp_vfs_littlefs_register(&conf);
-//
-//     return (ret == ESP_OK);
-// }
-
-// static auto _unmount_spiffs() -> uint8_t {
-//     return (esp_vfs_littlefs_unregister(nullptr) == ESP_OK);
-// }
 
 // not null-pointer safe
 static auto _write_medium(const circular_queue_t* cq, const void* data, const uint16_t data_size) -> uint8_t {
