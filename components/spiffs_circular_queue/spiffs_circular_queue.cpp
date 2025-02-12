@@ -6,6 +6,9 @@
 
 #include "spiffs_circular_queue.h"
 
+#include "sys/stat.h"
+#include "esp_littlefs.h"
+
 #ifdef ESP32
 #include "sys/stat.h"
 #include "esp_spiffs.h"
