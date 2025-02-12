@@ -4,9 +4,9 @@
 * @author rykovv
 **/
 
-#include <stddef.h>
-#include <stdint.h>
-#include <string.h>
+#include <cstddef>
+#include <cstdint>
+#include <cstring>
 
 #ifndef __SPIFFS_CIRCULAR_QUEUE__H__
 #define __SPIFFS_CIRCULAR_QUEUE__H__
