@@ -9,17 +9,9 @@
 #include "sys/stat.h"
 #include "../joltwallet__littlefs/include/esp_littlefs.h"
 
-#ifdef ESP32
-#include "sys/stat.h"
-#include "esp_spiffs.h"
-#else
-#error Library designed to work with ESP32 arch and x-tensa toolchain 
-#endif
-
 #define CIRCULAR_QUEUE_DATA_OFFSET_FIXED    (sizeof(uint32_t)*3 + \
                                             sizeof(uint16_t)    + \
                                             sizeof(uint8_t))    ///< Data location file offset (fixed part)
-
 
 /// Private function to mount SPIFFS during initialization
 static auto _mount_spiffs() -> uint8_t;
