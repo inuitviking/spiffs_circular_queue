@@ -51,7 +51,7 @@ In your `idf_component.yml`, it should look something like this, in your `depend
 dependencies:
   spiffs_circular_queue:
     git: https://github.com/inuitviking/spiffs_circular_queue.git
-    path: components/spiffs_circular_queue
+    path: main/spiffs_circular_queue
     version: master
 ```
 
